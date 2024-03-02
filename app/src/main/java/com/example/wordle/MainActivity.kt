@@ -11,7 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import java.lang.StringBuilder
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,15 +52,29 @@ class MainActivity : AppCompatActivity() {
 
             checkText.text = colorThing(attemptedGuessTxt, checkPlz, "Guess: ", checkText.text)
 
+            val tempAns = StringBuilder() // Initialize a StringBuilder object
+            for (i in checkPlz.indices) {
+                tempAns.append(if (checkPlz[i] == 'O') " " + attemptedGuessTxt[i] + " " else " _ ")
+            }
+            val result = tempAns.toString() // Convert StringBuilder to a String
+            answerText.text = result
+
             val btnMode = guessBtn.text;
 
             if (btnMode == getString(R.string.guessSubmissionBtnText)) {
-                if (tries == 0) {
+                if (tries == 1) {
                     guessAttemptIndicator.text = "💀"
                     Toast.makeText(this, "No more tries. Skill issue bro", Toast.LENGTH_SHORT)
                         .show()
                     guessBtn.text = getString(R.string.RestartSubmissionBtnText)
-                    answerText.text = whatToGuess
+
+                    val newString = StringBuilder()
+                    for (i in whatToGuess.indices) {
+                        newString.append(" ")
+                        newString.append(whatToGuess[i])
+                        newString.append(" ")
+                    }
+                    answerText.text = newString
                 } else {
                     if (checkPlz == "OOOO") {
                         guessAttemptIndicator.text = "🍀"
@@ -72,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                         guessBtn.text = getString(R.string.RestartSubmissionBtnText)
                     } else {
                         --tries
-                        guessAttemptIndicator.text = tries.toString()
+                        guessAttemptIndicator.text = (tries).toString()
                     }
                 }
             } else if (btnMode == getString(R.string.RestartSubmissionBtnText)) {
