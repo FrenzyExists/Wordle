@@ -1,12 +1,86 @@
 package com.example.wordle
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
+
+    private val maxTries = 4
+    private var tries = maxTries
+
+    /**
+     * Where the guessing stuff happens. Will later change tihs to a menu so i can have two
+     * wordle versions if I can speed run this with enough monster energy drinks and
+     * ecchi mangas
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var whatToGuess = FourLetterWord.getRandomFourLetterWord()
+        val guessText =
+            findViewById<TextView>(R.id.guess) // The stuff I'm guessing, that will appear
+        val checkText = findViewById<TextView>(R.id.check) // The check I do
+        val answerText = findViewById<TextView>(R.id.answer) // The answer, hidden basically
+        val guessAttemptIndicator =
+            findViewById<TextView>(R.id.remainingTries) // Something that shows how many tries you have left
+        val guessBtn =
+            findViewById<Button>(R.id.attemptedGuess) // The button that will trigger the guessing thing
+
+        guessAttemptIndicator.text = tries.toString() // set this at the beginning or whatever
+
+        guessBtn.setOnClickListener {
+          // TODO: Change this text thing so it onl takes 4 letters and you can edit all 4 letters
+
+            val attemptedGuessTxt =
+                findViewById<EditText>(R.id.guessInput).text.toString().uppercase()
+
+            val checkPlz = checkAnswer(whatToGuess, attemptedGuessTxt)
+            guessText.text =
+                StringBuilder(guessText.text).append("Guess: $attemptedGuessTxt\n")
+                    .toString()
+
+            val btnMode = guessBtn.text;
+
+            if (btnMode == getString(R.string.guessSubmissionBtnText)) {
+                if (tries == 0) {
+                    guessAttemptIndicator.text = "💀"
+                    Toast.makeText(this, "No more tries. Skill issue bro", Toast.LENGTH_SHORT)
+                        .show()
+                    guessBtn.text = getString(R.string.RestartSubmissionBtnText)
+                } else {
+                    if (checkPlz == "OOOO") {
+                        guessAttemptIndicator.text = "🍀"
+                        answerText.text = "Correct!"
+                        answerText.text = buildString {
+                            append("The answer is: ")
+                            append(whatToGuess)
+                        }
+                        guessBtn.text = getString(R.string.RestartSubmissionBtnText)
+                    } else {
+                        --tries
+                        guessAttemptIndicator.text = tries.toString()
+                    }
+                }
+            } else if (btnMode == getString(R.string.RestartSubmissionBtnText)) {
+                tries = maxTries
+                guessAttemptIndicator.text = tries.toString()
+                answerText.text = ""
+                checkText.text = ""
+                whatToGuess = FourLetterWord.getRandomFourLetterWord() // Get a new word to guess
+                guessText.text = "" // Clear the previous guessed text
+                guessBtn.text = getString(R.string.guessSubmissionBtnText)
+            }
+        }
     }
 
     private fun checkAnswer(answer: String, guess: String): String {
