@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Wordle</string>
+    <string name="guessInputHint">Guess the word bozo</string>
+    <string name="titleGame">The Wordle</string>
+    <string name="restartText">Restart</string>
 </resources>
