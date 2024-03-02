@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gui00">#20202A</color>
+    <color name="gui01">#2C2E3E</color>
+    <color name="gui02">#A7B7D6</color>
+    <color name="gui03">#44495E</color>
+    <color name="gui04">#C6D0E9</color>
+    <color name="gui05">#63718B</color>
+    <color name="gui06">#313449</color>
+    <color name="gui07">#1A1A24</color>
+    <color name="gui08">#EBB9B9</color>
+    <color name="gui09">#E8CCA7</color>
+    <color name="gui0A">#E6DFB8</color>
+    <color name="gui0B">#B1DBA4</color>
+    <color name="gui0C">#B8DEEB</color>
+    <color name="gui0D">#CDDBF9</color>
+    <color name="gui0E">#F6BBE7</color>
+    <color name="gui0F">#EAC1C1</color>
+</resources>
