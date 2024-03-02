@@ -1,15 +1,16 @@
 package com.example.wordle
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
+import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         guessAttemptIndicator.text = tries.toString() // set this at the beginning or whatever
 
         guessBtn.setOnClickListener {
-          // TODO: Change this text thing so it onl takes 4 letters and you can edit all 4 letters
+            // TODO: Change this text thing so it onl takes 4 letters and you can edit all 4 letters
 
             val attemptedGuessTxt =
                 findViewById<EditText>(R.id.guessInput).text.toString().uppercase()
@@ -49,6 +50,8 @@ class MainActivity : AppCompatActivity() {
                 StringBuilder(guessText.text).append("Guess: $attemptedGuessTxt\n")
                     .toString()
 
+            checkText.text = colorThing(attemptedGuessTxt, checkPlz, "Guess: ", checkText.text)
+
             val btnMode = guessBtn.text;
 
             if (btnMode == getString(R.string.guessSubmissionBtnText)) {
@@ -57,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "No more tries. Skill issue bro", Toast.LENGTH_SHORT)
                         .show()
                     guessBtn.text = getString(R.string.RestartSubmissionBtnText)
+                    answerText.text = whatToGuess
                 } else {
                     if (checkPlz == "OOOO") {
                         guessAttemptIndicator.text = "🍀"
@@ -83,6 +87,34 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun colorThing(
+        guess: String,
+        check: String,
+        connector: String,
+        prev: CharSequence = ""
+    ): SpannableStringBuilder {
+        val spannableStringBuilder = SpannableStringBuilder()
+        spannableStringBuilder.append(prev)
+        spannableStringBuilder.append(connector)
+
+        for (i in guess.indices) {
+            val g = guess[i]
+            val c = check[i]
+            val colorResId = if (c != 'X') R.color.gui0C else R.color.gui08
+            val color = ContextCompat.getColor(this, colorResId)
+            val spannableString = SpannableString(g.toString())
+            spannableString.setSpan(
+                ForegroundColorSpan(color),
+                0,
+                1,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            spannableStringBuilder.append(spannableString)
+        }
+        spannableStringBuilder.append("\n")
+        return spannableStringBuilder
+    }
+
     private fun checkAnswer(answer: String, guess: String): String {
         val result = CharArray(answer.length) { '*' } // Initialize result array with '*'
         val charCountMap = answer.groupingBy { it }.eachCount().toMutableMap()
@@ -106,43 +138,6 @@ class MainActivity : AppCompatActivity() {
                 result[i] = 'X'
             }
         }
-
         return String(result)
     }
-
-//    private fun checkAnswer(answer: String, guess: String): String {
-//        val result = charArrayOf('*', '*', '*', '*') // * = unprocessed
-//        val dict = mutableMapOf<Char, Int>()
-//        for (ch in answer){
-//            dict[ch] = dict.getOrDefault(ch, 0) + 1
-//        }
-//        // in first pass, check for chars that match and put O in places they match
-//        for (i in guess.indices){
-//            val g = guess[i]
-//            if (answer[i] == g){
-//                result[i] = 'O'
-//                dict[g] = dict.getOrDefault(g, 0) - 1
-//                if (dict.getOrDefault(g, 0) == 0){
-//                    dict.remove(g)
-//                }
-//            }
-//        }
-//        // in second pass, check for the wrong positions
-//        for (i in guess.indices){
-//            if (result[i] != '*')
-//                continue
-//            val g = guess[i]
-//            if (dict.containsKey(g)){
-//                result[i] = '+'
-//                dict[g] = dict.getOrDefault(g, 0) - 1
-//                if (dict.getOrDefault(g, 0) == 0){
-//                    dict.remove(g)
-//                }
-//            }else{
-//                result[i] = 'X'
-//            }
-//        }
-//        return String(result)
-//    }
-
 }
