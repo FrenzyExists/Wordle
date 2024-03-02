@@ -33,14 +33,14 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
+https://github.com/FrenzyExists/Wordle/assets/47986470/053d8dd7-3444-4a19-b193-b64ef36291ff
+
+
+
+https://github.com/FrenzyExists/Wordle/assets/47986470/bab1f54a-5517-42ea-b653-cc803a787c70
+
+
 
 ## Notes
 
