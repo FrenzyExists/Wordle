@@ -50,14 +50,21 @@ class MainActivity : AppCompatActivity() {
                 StringBuilder(guessText.text).append("Guess: $attemptedGuessTxt\n")
                     .toString()
 
-            checkText.text = colorThing(attemptedGuessTxt, checkPlz, "Guess: ", checkText.text)
+            checkText.text = colorThing(attemptedGuessTxt, checkPlz, "Check: ", checkText.text)
 
-            val tempAns = StringBuilder() // Initialize a StringBuilder object
-            for (i in checkPlz.indices) {
-                tempAns.append(if (checkPlz[i] == 'O') " " + attemptedGuessTxt[i] + " " else " _ ")
+            val tempAns = StringBuilder()
+
+            val oldAttempt = answerText.text.toString()
+
+            for (i in 0 until 4) {
+                tempAns.append(
+                    if (checkPlz[i] == 'O') attemptedGuessTxt[i]
+                    else if (attemptedGuessTxt[i] == '_') '_'
+                    else if (oldAttempt.isNotEmpty()) oldAttempt[i]
+                    else '_'
+                )
             }
-            val result = tempAns.toString() // Convert StringBuilder to a String
-            answerText.text = result
+            answerText.text = tempAns.toString()
 
             val btnMode = guessBtn.text;
 
@@ -67,14 +74,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "No more tries. Skill issue bro", Toast.LENGTH_SHORT)
                         .show()
                     guessBtn.text = getString(R.string.RestartSubmissionBtnText)
-
-                    val newString = StringBuilder()
-                    for (i in whatToGuess.indices) {
-                        newString.append(" ")
-                        newString.append(whatToGuess[i])
-                        newString.append(" ")
-                    }
-                    answerText.text = newString
+                    answerText.text = whatToGuess
                 } else {
                     if (checkPlz == "OOOO") {
                         guessAttemptIndicator.text = "🍀"
@@ -111,10 +111,25 @@ class MainActivity : AppCompatActivity() {
         spannableStringBuilder.append(prev)
         spannableStringBuilder.append(connector)
 
+        if (guess.isEmpty()) {
+            return spannableStringBuilder
+        }
+        var colorResId: Int = R.color.gui02
         for (i in guess.indices) {
             val g = guess[i]
-            val c = check[i]
-            val colorResId = if (c != 'X') R.color.gui0C else R.color.gui08
+            when (check[i]) {
+                'X' -> {
+                    colorResId = R.color.gui08
+                }
+
+                'O' -> {
+                    colorResId = R.color.gui0C
+                }
+
+                '+' -> {
+                    colorResId = R.color.gui09
+                }
+            }
             val color = ContextCompat.getColor(this, colorResId)
             val spannableString = SpannableString(g.toString())
             spannableString.setSpan(
