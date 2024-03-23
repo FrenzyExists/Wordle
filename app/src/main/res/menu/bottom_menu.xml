@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeBtn"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/scoreBtn"
+        android:title="@string/scoreboard"
+        android:icon="@drawable/star_solid"/>
+
+    <item
+        android:id="@+id/settingsBtn"
+        android:title="@string/settings"
+        android:icon="@drawable/gear_solid"/>
+
+    <item
+        android:id="@+id/aboutBtn"
+        android:title="@string/about"
+        android:icon="@drawable/exclamation_solid"/>
+</menu>

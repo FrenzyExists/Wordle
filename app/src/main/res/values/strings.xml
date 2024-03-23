@@ -4,4 +4,10 @@
     <string name="titleGame">The Wordle</string>
     <string name="guessSubmissionBtnText">Guess!</string>
     <string name="RestartSubmissionBtnText">Restart</string>
+    <string name="scoreboard">Scoreboard</string>
+    <string name="settings">Settings</string>
+    <string name="about">How to play</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Back to Game</string>
 </resources>

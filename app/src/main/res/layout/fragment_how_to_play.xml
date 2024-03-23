@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HowToPlayFragment"
+    android:background="@color/gui0B">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How to play"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_marginBottom="30dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="In wordle you must make a guess of the word in question. A normal game has 4 tries, and if you waste all 4 tries you loose.\nIf the letter in the square cell is green then its correct, if its yellow then its the right letter, but on the wrong position, and if its red then the secret word does not contain that letter.\n Can you beat it? Try it out!"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="121dp" />
+    </LinearLayout>
+
+
+
+</FrameLayout>

@@ -1,36 +1,84 @@
 package com.example.wordle
 
+import android.content.Context
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.InputFilter
+import android.text.InputType
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
+import android.util.Log
+import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 
-
 class MainActivity : AppCompatActivity() {
-
     private val maxTries = 4
     private var tries = maxTries
+    private val keyboardEditTexts = ArrayList<EditText>()
 
-    /**
-     * Where the guessing stuff happens. Will later change tihs to a menu so i can have two
-     * wordle versions if I can speed run this with enough monster energy drinks and
-     * ecchi mangas
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val binding: MainActivity
+
         setContentView(R.layout.activity_main)
 
+//        val relativeWordle = findViewById<RelativeLayout>(R.id.relativeWordle)
+//        createWordleGrid(this, relativeWordle, 4, 4)
+
+//        val alphabet = ('A'..'Z')
+
+
+//        for (i in 0 until 4) {
+//            for (j in 0 until 4) {
+//                val resourceId = resources.getIdentifier("edt_${i}${j}", "id", packageName)
+//                val editText = findViewById<EditText>(resourceId)
+//                keyboardEditTexts.add(editText)
+//            }
+//        }
+
+//        for (i in 0 until 4*2-1) {
+//            passFocusToNextEdt(keyboardEditTexts[i], keyboardEditTexts[i+1])
+
+//        }
+
+//        for (letter in alphabet) {
+//            val buttonId = resources.getIdentifier("button$letter", "id", packageName)
+//            val button = findViewById<TextView>(buttonId)
+//            button.setOnClickListener {
+//                for (i in 0 until 4*2-1) {
+//                    Log.v("KEWB", button.text.toString())
+//                    wordleCellThing(keyboardEditTexts[i], button.text.toString())
+//                }
+//            }
+//        }
+
+
+
+
+
+
+
+
+
+
+
         var whatToGuess = FourLetterWord.getRandomFourLetterWord()
-        val guessText =
-            findViewById<TextView>(R.id.guess) // The stuff I'm guessing, that will appear
-        val checkText = findViewById<TextView>(R.id.check) // The check I do
+//        val guessText =
+//            findViewById<TextView>(R.id.guess) // The stuff I'm guessing, that will appear
+//        val checkText = findViewById<TextView>(R.id.check) // The check I do
         val answerText = findViewById<TextView>(R.id.answer) // The answer, hidden basically
         val guessAttemptIndicator =
             findViewById<TextView>(R.id.remainingTries) // Something that shows how many tries you have left
@@ -45,12 +93,16 @@ class MainActivity : AppCompatActivity() {
             val attemptedGuessTxt =
                 findViewById<EditText>(R.id.guessInput).text.toString().uppercase()
 
-            val checkPlz = checkAnswer(whatToGuess, attemptedGuessTxt)
-            guessText.text =
-                StringBuilder(guessText.text).append("Guess: $attemptedGuessTxt\n")
-                    .toString()
+            if (attemptedGuessTxt.isEmpty()) {
+                return@setOnClickListener
+            }
 
-            checkText.text = colorThing(attemptedGuessTxt, checkPlz, "Check: ", checkText.text)
+            val checkPlz = checkAnswer(whatToGuess, attemptedGuessTxt)
+//            guessText.text =
+//                StringBuilder(guessText.text).append("Guess: $attemptedGuessTxt\n")
+//                    .toString()
+//
+//            checkText.text = colorThing(attemptedGuessTxt, checkPlz, "Check: ", checkText.text)
 
             val tempAns = StringBuilder()
 
@@ -93,9 +145,9 @@ class MainActivity : AppCompatActivity() {
                 tries = maxTries
                 guessAttemptIndicator.text = tries.toString()
                 answerText.text = ""
-                checkText.text = ""
-                whatToGuess = FourLetterWord.getRandomFourLetterWord() // Get a new word to guess
-                guessText.text = "" // Clear the previous guessed text
+//                checkText.text = ""
+//                whatToGuess = FourLetterWord.getRandomFourLetterWord() // Get a new word to guess
+//                guessText.text = "" // Clear the previous guessed text
                 guessBtn.text = getString(R.string.guessSubmissionBtnText)
             }
         }
@@ -144,6 +196,36 @@ class MainActivity : AppCompatActivity() {
         return spannableStringBuilder
     }
 
+    private fun passFocusToNextEdt(edt1: EditText, edt2: EditText) {
+        // on below line we are passing focus to
+        // next edt is previous one is filled.
+        edt1.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s?.length == 1) {
+                    edt2.requestFocus()
+                }
+            }
+
+        })
+    }
+
+    private  fun wordleCellThing(cell: EditText, letter: String) {
+        cell.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                Log.v("FOCUS", "HAS FOCUS: $letter")
+                cell.text = Editable.Factory.getInstance().newEditable(letter)
+            } else {
+                // Handle the case when focus is lost
+            }
+        }
+    }
+
     private fun checkAnswer(answer: String, guess: String): String {
         val result = CharArray(answer.length) { '*' } // Initialize result array with '*'
         val charCountMap = answer.groupingBy { it }.eachCount().toMutableMap()
@@ -169,4 +251,46 @@ class MainActivity : AppCompatActivity() {
         }
         return String(result)
     }
+
+    private fun createWordleGrid(context: Context, parentLayout: RelativeLayout, numRows: Int, numCols: Int) {
+        val cellSize = 70 // Change this to adjust cell size
+        val margin = 4 // Change this to adjust margin
+
+        val parentParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.MATCH_PARENT
+        )
+        parentLayout.layoutParams = parentParams
+
+        for (i in 0 until numRows) {
+            val linearLayout = LinearLayout(context).apply {
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    cellSize
+                )
+                orientation = LinearLayout.HORIZONTAL
+                weightSum = numCols.toFloat()
+            }
+
+            for (j in 0 until numCols) {
+                val editText = EditText(context).apply {
+                    id = View.generateViewId()
+                    background = ContextCompat.getDrawable(context, R.drawable.cells)
+                    isFocusable = true
+                    isFocusableInTouchMode = true
+                    gravity = Gravity.CENTER
+                    inputType = InputType.TYPE_CLASS_TEXT
+                    filters = arrayOf<InputFilter>(InputFilter.LengthFilter(1))
+                    textSize = 24f
+                    setTypeface(typeface, Typeface.BOLD)
+                }
+                linearLayout.addView(editText)
+            }
+
+            parentLayout.addView(linearLayout)
+        }
+    }
+
+
+
 }

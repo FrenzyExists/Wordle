@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:shrinkColumns="0,1,2,3,4,5,6,7,8,9,10"
+        android:stretchColumns="0,1,2,3,4,5,6,7,8,9,10"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/buttonQ"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="Q"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonW"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="W"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonE"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="E"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonR"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="R"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonT"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="T"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonY"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="Y"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonU"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="U"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonI"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="I"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonO"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="O"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonP"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="P"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:gravity="center_horizontal"
+            android:padding="0dp"
+            android:textSize="20sp">
+
+            <TextView
+                android:id="@+id/buttonA"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="A"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonS"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="S"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonD"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="D"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonF"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="F"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonG"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="G"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonH"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="H"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonJ"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="J"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonK"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="K"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonL"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="L"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="5dp"
+            android:gravity="center_horizontal"
+            android:padding="0dp"
+            android:textSize="20sp">
+
+            <TextView
+                android:id="@+id/buttonZ"
+                style="@style/MaterialAlertDialog.Material3.Body.Text"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="Z"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonX"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="X"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonC"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="C"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonV"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="V"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonB"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="B"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonN"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="N"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonM"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/keys"
+                android:gravity="center_vertical|center_horizontal"
+                android:padding="0dp"
+                android:text="M"
+                android:textAlignment="center"
+                android:textColor="@color/gui02"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
